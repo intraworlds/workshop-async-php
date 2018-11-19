@@ -9,13 +9,18 @@ zadané hloubky.
 Příklady vyžadují [docker-compose] pro spuštění Redisu a workerů, dále poskytuje
 PHP pro spouštění web crawleru.
 
-Nejdříve nainstalujte závislosti
+Stáhněte si zdrojové kódy
+```
+git clone https://github.com/intraworlds/workshop-async-php.git
+```
+
+Nainstalujte závislosti
 ```
 docker-compose run --rm php -r "copy('https://getcomposer.org/composer.phar', 'composer.phar');"
 docker-compose run --rm php php composer.phar install
 ```
 
-Poté spusťte Redis a workera
+Spusťte Redis a workera
 ```
 docker-compose up -d
 ```
