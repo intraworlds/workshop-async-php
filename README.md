@@ -1,4 +1,5 @@
-Náš problém je následující. Vyhledejte všechny odkazy na zadané stránce. Pokud
+## Zadání
+Vyhledejte všechny odkazy na zadané stránce. Pokud
 je nalezený odkaz URL na další stránku vyhledejte odkazy i na ní, atd. až do
 zadané hloubky.
 
