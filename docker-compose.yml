@@ -1,0 +1,16 @@
+version: '2'
+services:
+  redis:
+    image: redis:3
+  php:
+    image: php:7.2
+    volumes:
+      - .:/app
+    working_dir: /app
+  worker:
+    image: php:7.2
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: php bin/worker.php
+    restart: always
