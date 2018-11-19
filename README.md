@@ -89,6 +89,9 @@ Pro instalaci bez dockeru je třeba mít nainstalované PHP 7.2, Composer a bě�
 1. změňte hostname ve funkci `predis()` na Váš Redis, např. `tcp://localhost:6379`
 1. ve vedlejším terminálu pusťte workera `php bin/worker.php`
 
+## Licence
+[MIT License]
+
 [docker-compose]: https://docs.docker.com/compose/
 [amphp/parallel]: https://packagist.org/packages/amphp/parallel
 [react/react]: https://packagist.org/packages/react/react
@@ -97,3 +100,4 @@ Pro instalaci bez dockeru je třeba mít nainstalované PHP 7.2, Composer a bě�
 [předchozí workshop]: https://github.com/intraworlds/workshop-redis
 [pthreads]: https://secure.php.net/manual/en/book.pthreads.php
 [RPOPLPUSH]: https://redis.io/commands/rpoplpush
+[MIT License]: https://github.com/intraworlds/workshop-async-php/blob/master/LICENSE
