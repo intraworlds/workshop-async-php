@@ -12,6 +12,7 @@ PHP pro spouštění web crawleru.
 Stáhněte zdrojové kódy
 ```
 git clone https://github.com/intraworlds/workshop-async-php.git
+cd workshop-async-php
 ```
 
 Nainstalujte závislosti
