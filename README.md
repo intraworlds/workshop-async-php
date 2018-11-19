@@ -1,6 +1,3 @@
-Tento repozitář obsahuje demonstrační příklady pro workshop o asynchronním
-zpracování v PHP.
-
 Náš problém je následující. Vyhledejte všechny odkazy na zadané stránce. Pokud
 je nalezený odkaz URL na další stránku vyhledejte odkazy i na ní, atd. až do
 zadané hloubky.
@@ -17,8 +14,7 @@ cd workshop-async-php
 
 Nainstalujte závislosti
 ```
-docker-compose run --rm php -r "copy('https://getcomposer.org/composer.phar', 'composer.phar');"
-docker-compose run --rm php php composer.phar install
+docker-compose run --rm composer install
 ```
 
 Spusťte Redis a workera
