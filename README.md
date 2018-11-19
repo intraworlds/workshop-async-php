@@ -9,7 +9,7 @@ zadané hloubky.
 Příklady vyžadují [docker-compose] pro spuštění Redisu a workerů, dále poskytuje
 PHP pro spouštění web crawleru.
 
-Stáhněte si zdrojové kódy
+Stáhněte zdrojové kódy
 ```
 git clone https://github.com/intraworlds/workshop-async-php.git
 ```
