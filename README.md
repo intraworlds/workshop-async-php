@@ -23,7 +23,7 @@ Spusťte Redis a workera
 docker-compose up -d
 ```
 
-Pokud nechcete pracovat s dockerem zkuste instalaci bez dockeru.
+Pokud nechcete pracovat s dockerem zkuste [instalaci bez dockeru](#instalace-bez-dockeru).
 
 ## Příklady
 Applikace dostává tři parametry
