@@ -39,7 +39,7 @@ Vrať všecny odkazy na stránce `www.intraworlds.cz` a odkazy na nich
 docker-compose run -T php bin/crawl.php sync https://www.intraworlds.cz 1
 ```
 
-> Poror! Opatrně s hloubkou prohledávání. Hodnoty nad 1 jdou už do tisíců odkazů
+> Pozor! Opatrně s hloubkou prohledávání. Hodnoty nad 1 jdou už do tisíců odkazů
 
 ## Úkoly
 1. upravte kód workeru tak, aby načítal pouze unikátní odkazy (viz typ `unique`),
