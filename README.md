@@ -23,6 +23,8 @@ Spusťte Redis a workera
 docker-compose up -d
 ```
 
+Pokud nechcete pracovat s dockerem zkuste instalaci bez dockeru.
+
 ## Příklady
 Applikace dostává tři parametry
 ```
@@ -40,6 +42,15 @@ docker-compose run -T php bin/crawl.php sync https://www.intraworlds.cz 1
 ```
 
 > Pozor! Opatrně s hloubkou prohledávání. Hodnoty nad 1 jdou už do tisíců odkazů
+
+## Typy
+- `sync` normální synchronní prohlédávání, stránky se načítají jedna za druhou
+- `unique` stejné jako `sync`, ale prohledává jen unikátní odkazy
+- `worker` jednotlivé stránky jsou zpracovány asynchronně v samostaném workeru,
+počet workerů je možné měnit a tím ovlivňovat rychlost prohledávání, zkuste
+`docker-compose up -d --scale worker=3` viz náš [první workshop]
+- `promise` využívá asynchronní HTTP request (pomocí Guzzle). Odešle všechny
+dílčí requesty najednou a poté postupně čeká na jejich výsledek.
 
 ## Úkoly
 1. upravte kód workeru tak, aby načítal pouze unikátní odkazy (viz typ `unique`),
@@ -72,15 +83,11 @@ nebo
 Řešení úkolů a mnoho dalších informací k dispozici na našem IWorkoshopu 27.11.2018
 od 18 hodin v Beer Factory. Přijďte, vstup je **zdarma**!
 
-## Typy
-- `sync` normální synchronní prohlédávání, stránky se načítají jedna za druhou
-- `unique` stejné jako `sync`, ale prohledává jen unikátní odkazy
-- `worker` jednotlivé stránky jsou zpracovány asynchronně v samostaném workeru,
-počet workerů je možné měnit a tím ovlivňovat rychlost prohledávání, zkuste
-`docker-compose up -d --scale worker=3` viz náš [první workshop]
-- `promise` využívá asynchronní HTTP request (pomocí Guzzle). Odešle všechny
-dílčí requesty najednou a poté postupně čeká na jejich výsledek.
-
+## Instalace bez Dockeru
+Pro instalaci bez dockeru je třeba mít nainstalované PHP 7.2, Composer a běžící Redis.
+1. nainstalujte závislosti `composer install`
+1. změňte hostname ve funkci `predis()` na Váš Redis, např. `tcp://localhost:6379`
+1. ve vedlejším terminálu pusťte workera `php bin/worker.php`
 
 [docker-compose]: https://docs.docker.com/compose/
 [amphp/parallel]: https://packagist.org/packages/amphp/parallel
