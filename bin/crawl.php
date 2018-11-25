@@ -28,7 +28,7 @@ switch ($type) {
         $urls = extract_urls_with_worker($url, $depth, uniqid());
         break;
     case 'promise':
-        $urls = extract_urls_promise_recursively($url, $depth)->wait();
+        $urls = extract_urls_promise_recursively_with_generator($url, $depth);
         break;
     default:
         die('Unknown type, use one of: sync, unique, worker, promise');

@@ -99,21 +99,28 @@ function extract_urls_promise(string $url): PromiseInterface {
         });
 }
 
-function extract_urls_promise_recursively(string $url, int $depth): PromiseInterface {
+function extract_urls_promise_recursively(string $url, int $depth, &$promises): PromiseInterface {
     return extract_urls_promise($url)
-        ->then(function ($urls) use ($depth) {
-            $promises = [GuzzleHttp\Promise\promise_for($urls)];
+        ->then(function ($urls) use ($depth, &$promises) {
+            // promise vrati generator na vyresene URL
+            yield from $urls;
 
             if ($depth > 0) {
                 foreach ($urls as $u) {
-                    $promises[] = extract_urls_promise_recursively($u, $depth - 1);
+                    // tato funce vraci pouze "prislib" vysledku a to okamzite, pridame si tedy prisliby
+                    // do fronty a pockame si na ne pozdeji
+                    $promises[] = extract_urls_promise_recursively($u, $depth - 1, $promises);
                 }
             }
-
-            // spoj výsledky s předchozích volání
-            return GuzzleHttp\Promise\all($promises)
-                ->then(function ($sets) {
-                    return array_merge(...$sets);
-                });
         });
+}
+
+function extract_urls_promise_recursively_with_generator(string $url, int $depth): \Generator {
+    // add promise to the stash
+    $promises = [extract_urls_promise_recursively($url, $depth, $promises)];
+
+    // pokud by bylo potreba zpracovavat vysledky co nejdrive, je vhodnejsi fce GuzzleHttp\Promise\each
+    while ($promise = array_shift($promises)) {
+        yield from $promise->wait();
+    }
 }
