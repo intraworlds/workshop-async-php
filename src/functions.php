@@ -48,7 +48,7 @@ function extract_urls_recursively(string $url, int $depth, callable $crawler): G
 function predis(): Predis\Client {
     static $client;
 
-    return $client ?? $client = new Predis\Client('tcp://redis');
+    return $client ?? $client = new Predis\Client('tcp://localhost');
 }
 
 // přidá zadanou adresu do fronty pro zpracování workerem
