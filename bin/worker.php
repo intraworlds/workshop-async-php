@@ -23,6 +23,7 @@ while (true) {
     // upravit kód tak, aby nedocházelo ke ztrátě dat
     if (rand(0,1)) {
         printf("\033[31;1mFAIL\033[0m! %s was lost!" . PHP_EOL, $url);
+        continue;
     }
 
     foreach (extract_urls($url) as $u) {
