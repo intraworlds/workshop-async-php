@@ -6,7 +6,7 @@ require __DIR__ . '/../vendor/autoload.php';
 // vlastni implementace metody brpop, predis s ni nepracuje moc dobre (ignoruje
 // dany timeout a spadne po case na globalnim)
 function brpop(string $key): string {
-    while (is_null($message = predis()->rpop($key))) {
+    while (is_null($message = predis()->rpoplpush($key, 'dlq'))) {
         usleep(100000);
     }
 
@@ -38,5 +38,9 @@ while (true) {
         if ($depth > 0) {
             extract_urls_with_worker($u, $depth - 1, $results);
         }
+
     }
+
+    // prace uspesne provedena, smaz ji z DLQ
+    predis()->lrem('dlq', 1, $message);
 }
