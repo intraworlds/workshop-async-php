@@ -14,6 +14,12 @@ while (true) {
     // if (rand(0,1)) exit(1);
 
     foreach (extract_urls($url) as $u) {
+        // napred zkus pridat hash URL do mnoziny, pokud je klic novy vrati 1, pokud v mnozine existuje
+        // vrati 0, operace je atomicka, https://redis.io/commands/sadd
+        if (!predis()->sadd($results . '_set', md5($u))) {
+            continue;
+        }
+
         predis()->rpush($results, json_encode($u));
 
         if ($depth > 0) {
