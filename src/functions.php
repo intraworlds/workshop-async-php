@@ -53,7 +53,7 @@ function predis(): Predis\Client {
 
 // přidá zadanou adresu do fronty pro zpracování workerem
 function extract_urls_with_worker(string $url, int $depth, string $results): Generator {
-    predis()->rpush('queue', json_encode([$url, $depth, $results]));
+    predis()->lpush('queue', json_encode([$url, $depth, $results]));
 
     // generátor, který poslouchá na frontě výsledků, pokud nebude zavolaný, kód se neprovede
     return (function () use ($results) {
