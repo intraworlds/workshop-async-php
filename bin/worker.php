@@ -3,8 +3,18 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
+// vlastni implementace metody blpop, predis s ni nepracuje moc dobre (ignoruje
+// dany timeout a spadne po case na globalnim)
+function blpop(string $key): string {
+    while (is_null($message = predis()->lpop($key))) {
+        usleep(100000);
+    }
+
+    return $message;
+}
+
 while (true) {
-    [, $message] = predis()->blpop('queue', 0);
+    $message = blpop('queue');
     [$url, $depth, $results] = json_decode($message, true);
 
     echo 'Received: ' . $url . PHP_EOL;
