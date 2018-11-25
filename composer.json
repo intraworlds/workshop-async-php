@@ -9,5 +9,15 @@
             "email": "ondrej.esler@intraworlds.com"
         }
     ],
-    "require": {}
+    "require": {
+        "symfony/dom-crawler": "^4.1",
+        "symfony/css-selector": "^4.1",
+        "predis/predis": "^1.1",
+        "guzzlehttp/guzzle": "^6.3"
+    },
+    "autoload": {
+        "files": [
+            "src/functions.php"
+        ]
+    }
 }
