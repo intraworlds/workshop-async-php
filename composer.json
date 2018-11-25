@@ -1,15 +1,13 @@
 {
-    "require": {
-        "symfony/dom-crawler": "^4.1",
-        "symfony/css-selector": "^4.1",
-        "fzaninotto/faker": "^1.8",
-        "phpunit/phpunit": "^7.4",
-        "predis/predis": "^1.1",
-        "guzzlehttp/guzzle": "^6.3"
-    },
-    "autoload": {
-        "files": [
-            "src/functions.php"
-        ]
-    }
+    "name": "intraworlds/workshop-async-php",
+    "description": "Demonstrační příklady pro workshop o asynchronním zpracování v PHP.",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ondřej Ešler",
+            "email": "ondrej.esler@intraworlds.com"
+        }
+    ],
+    "require": {}
 }
