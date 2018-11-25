@@ -21,7 +21,9 @@ while (true) {
 
     // nasledující řádek přidává nestabilitu workeru, při odkomentování je nutné
     // upravit kód tak, aby nedocházelo ke ztrátě dat
-    // if (rand(0,1)) exit(1);
+    if (rand(0,1)) {
+        printf("\033[31;1mFAIL\033[0m! %s was lost!" . PHP_EOL, $url);
+    }
 
     foreach (extract_urls($url) as $u) {
         // napred zkus pridat hash URL do mnoziny, pokud je klic novy vrati 1, pokud v mnozine existuje
