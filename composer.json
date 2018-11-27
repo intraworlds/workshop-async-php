@@ -13,7 +13,9 @@
         "symfony/dom-crawler": "^4.1",
         "symfony/css-selector": "^4.1",
         "predis/predis": "^1.1",
-        "guzzlehttp/guzzle": "^6.3"
+        "guzzlehttp/guzzle": "^6.3",
+        "amphp/http-server": "^0.8.3",
+        "amphp/log": "^1.0"
     },
     "autoload": {
         "files": [
