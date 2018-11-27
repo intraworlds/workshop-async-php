@@ -51,6 +51,15 @@ function predis(): Predis\Client {
     return $client ?? $client = new Predis\Client('tcp://redis');
 }
 
+// extrahuje pouze unikátní URL ze zadané adresy
+function worker_extract_unique_urls(string $url): Generator {
+    foreach (extract_urls($url) as $u) {
+        if (predis()->hsetnx('visited', md5($u), 1)) {
+            yield $u;
+        }
+    }
+}
+
 // přidá zadanou adresu do fronty pro zpracování workerem
 function extract_urls_with_worker(string $url, int $depth, string $results): Generator {
     predis()->rpush('queue', json_encode([$url, $depth, $results]));

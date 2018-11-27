@@ -23,7 +23,7 @@ while (true) {
     // upravit kód tak, aby nedocházelo ke ztrátě dat
     // if (rand(0,1)) exit(1);
 
-    foreach (extract_urls($url) as $u) {
+    foreach (worker_extract_unique_urls($url) as $u) {
         predis()->rpush($results, json_encode($u));
 
         if ($depth > 0) {
