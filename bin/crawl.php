@@ -25,6 +25,7 @@ switch ($type) {
         $urls = extract_urls_recursively($url, $depth, 'extract_unique_urls');
         break;
     case 'worker':
+        predis()->del('visited');
         $urls = extract_urls_with_worker($url, $depth, uniqid());
         break;
     case 'promise':
