@@ -9,27 +9,39 @@ function create_order(): string {
 }
 
 function reserve_goods(string $orderId): bool {
-    echo 'Reserving goods for order ' . $orderId . ' ... '; flush();
     sleep(1); // simulate SQL queries
-    echo 'OK' . PHP_EOL; flush();
 
-    return true;
+    if (rand(0,1)) { // simulate probability of a failure
+        echo 'Reserving goods for order ' . $orderId . ' ... OK' . PHP_EOL; flush();
+        return true;
+    } else {
+        echo 'Reserving goods for order ' . $orderId . ' ... FAILED' . PHP_EOL; flush();
+        return false;
+    }
 }
 
 function notify_warehouse(string $orderId): bool {
-    echo 'Notifying warehouse about order ' . $orderId . ' ... '; flush();
     sleep(1); // simulate calling remote service
-    echo 'OK' . PHP_EOL; flush();
 
-    return true;
+    if (rand(0,1)) { // simulate probability of a failure
+        echo 'Notifying warehouse about order ' . $orderId . ' ... OK' . PHP_EOL; flush();
+        return true;
+    } else {
+        echo 'Notifying warehouse about order ' . $orderId . ' ... FAILED' . PHP_EOL; flush();
+        return false;
+    }
 }
 
-function generate_invoice(string $orderId): string {
-    echo 'Generating invoice ... '; flush();
+function generate_invoice(string $orderId): ?string {
     sleep(1); // simulate calling PDF library CLI tool
-    echo ($invoiceId = 'INV-' . $orderId) . ' ... OK' . PHP_EOL; flush();
 
-    return $invoiceId;
+    if (rand(0,1)) { // simulate probability of a failure
+        echo ($invoiceId = 'Generating invoice ... INV-' . $orderId) . ' ... OK' . PHP_EOL; flush();
+        return $invoiceId;
+    } else {
+        echo 'Generating invoice ... FAILED' . PHP_EOL; flush();
+        return null;
+    }
 }
 
 function send_mail(string $invoiceId): void {

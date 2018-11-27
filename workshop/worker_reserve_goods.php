@@ -11,6 +11,8 @@ while (true) {
         if ($reserved) {
             $predis->lpush('notify_warehouse', $orderId);
             $predis->lpush('generate_invoice', $orderId);
+        } else {
+            $predis->lpush('reserve_goods', $orderId);
         }
     } else {
         sleep(1);

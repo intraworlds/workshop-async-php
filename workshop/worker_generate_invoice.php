@@ -9,6 +9,9 @@ while (true) {
         $invoiceId = generate_invoice($orderId);
 
         if ($invoiceId) {
+            while (is_null($predis->rpop('notified_' . $orderId))) {
+                sleep(1);
+            }
             $predis->lpush('send_mail', $invoiceId);
         } else {
             $predis->lpush('generate_invoice', $orderId);
