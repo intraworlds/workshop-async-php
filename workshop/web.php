@@ -1,4 +1,9 @@
 <?php
+require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/services.php';
 
-create_order();
+$predis = new Predis\Client;
+
+$orderId = create_order();
+
+$predis->lpush('reserve_goods', $orderId);
