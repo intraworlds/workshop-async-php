@@ -45,7 +45,6 @@ function generate_invoice(string $orderId): ?string {
 }
 
 function send_mail(string $invoiceId): void {
-    echo 'Sending email ... '; flush();
     sleep(1); // simulate sending an email
-    echo 'OK' . PHP_EOL; flush();
+    echo 'Sending email ... OK' . PHP_EOL; flush();
 }
